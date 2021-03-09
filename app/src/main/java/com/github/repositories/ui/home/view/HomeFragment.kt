@@ -62,7 +62,7 @@ class  HomeFragment: DaggerFragment() {
         userListAdapter.submitList(users)
     }
 
-    private fun handleRecipesList(status: Resource<List<User>>) {
+    private fun handleUserList(status: Resource<List<User>>) {
         when (status) {
             is Resource.Loading -> binding.vflipper.displayedChild = 2
             is Resource.Success -> status.data?.let {
@@ -76,7 +76,7 @@ class  HomeFragment: DaggerFragment() {
     private fun observeViewModel() {
         homeViewModel.usersLiveData.observe(viewLifecycleOwner, Observer {
             it?.let {
-                t -> handleRecipesList(t)
+                t -> handleUserList(t)
             }
         })
     }
